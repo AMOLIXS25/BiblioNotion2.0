@@ -75,11 +75,14 @@ class BookStorage:
         sql_request: str = "INSERT INTO T_Books(b_title, b_cover, b_authors, b_status, b_types, b_pages, b_isbn, b_published_date, b_evaluation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
         new_book.cover = self.save_cover(new_book.title, new_book.cover)
         new_book = (new_book.title, new_book.cover, new_book.authors, new_book.status, new_book.types, new_book.pages, new_book.isbn, new_book.published_date, new_book.evaluation)
-        with closing(self.cursor) as cursor:
-            self.cursor.execute(
-                sql_request,
-                new_book)
-            self.commit()
+        try:
+            with closing(self.cursor) as cursor:
+                self.cursor.execute(
+                        sql_request,
+                        new_book)
+                self.commit()
+        except sqlite3.IntegrityError:
+            print("[+] Erreur d'intégritée géré")
 
     def save_cover(self, book_name: str, path_cover_to_save):
         setting_storage = SettingStorage()

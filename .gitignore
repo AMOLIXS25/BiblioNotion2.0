@@ -1,10 +1,4 @@
-books_cover/
-export/
 __pycache__/
 __pypackages__/
 .vscode/
-.idea/
-res/
-.pdm.toml
-pdm.lock
-pyproject.toml
+.idea/ 

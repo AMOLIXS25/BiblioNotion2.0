@@ -14,7 +14,7 @@ class TestBookModel:
         """Méthod qui permet de tester le constructeur du BookModel en passant tous les paramètres"""
         book_model = BookModel(
             title="Harry potter",
-            cover="./books/cover/test.jpeg",
+            cover="./books_cover/Gigi2.jpg",
             authors="J.K Rowling",
             pages=14,
             isbn="9878465464",
@@ -64,6 +64,22 @@ class TestBookModel:
 class TestBookStorage:
     """TestBookStorage class"""
     @pytest.fixture
+    def book(self):
+        book_model = BookModel(
+            title="Harry potter",
+            cover="./books_cover/Gigi2.jpg",
+            authors="J.K Rowling",
+            pages=14,
+            isbn="9878465464",
+            published_date="2003",
+            id=5,
+            types="fantastique",
+            evaluation=3,
+            status="Pas commencé"
+        )
+        yield book_model
+
+    @pytest.fixture
     def book_storage(self):
         book_storage = BookStorage("test.db")
         yield book_storage
@@ -84,6 +100,97 @@ class TestBookStorage:
 
     def test_insert_a_book(self, book_storage):
         """Méthode qui permet de tester l'insertion d'un livre dans la base de donnée"""
-        pass
+        sql_request = """SELECT COUNT(*) FROM T_Books"""
+        books_to_insert = [
+            BookModel(
+                title="Harry potter",
+                cover="./books_cover/Gigi2.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="9878465464",
+                published_date="2003"
+            ),
+            BookModel(
+                title="Harry potter",
+                cover="./books_cover/Gigi2.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="9878465464",
+                published_date="2003"
+            ),
+            BookModel(
+                title="Harry potter",
+                cover="./books_cover/Gigi2.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="9878465464",
+                published_date="2003"
+            ),
+            BookModel(
+                title="Harry potter",
+                cover="./books_cover/Gigi2.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="9878465464",
+                published_date="2003"
+            ),
+            BookModel(
+                title="Harry potter",
+                cover="./books_cover/Gigi2.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="9878465464",
+                published_date="2003"
+            ),
+            BookModel(
+                title="Harry potter",
+                cover="./books_cover/Gigi2.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="9878465464",
+                published_date="2003"
+            ),
+            BookModel(
+                title="Harry potter",
+                cover="./books_cover/Gigi2.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="9878465464",
+                published_date="2003"
+            ),
+            BookModel(
+                title="Harry potter",
+                cover="./books_cover/Gigi2.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="9878465464",
+                published_date="2003"
+            ),
+            BookModel(
+                title="Harry potter",
+                cover="./books_cover/Gigi2.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="9878465464",
+                published_date="2003"
+            ),
+            BookModel(
+                title="Harry potter",
+                cover="./books_cover/Gigi2.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="9878465464",
+                published_date="2003"
+            )
+        ]
+        for book in books_to_insert:
+            book_storage.insert_a_book(book)
+        with closing(book_storage.cursor) as cursor:
+            res = cursor.execute(sql_request)
+            assert res.fetchone()[0] > 0
     
+    def test_get_all_books(self, book_storage):
+        """Méthode qui permet de tester la récupération de tous les livres"""
+        get_books = book_storage.get_all_books()
+        print(get_books)    
         
