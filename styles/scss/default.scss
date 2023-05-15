@@ -1,0 +1,367 @@
+@import "./variables";
+@import "./mixins";
+
+@include widget_focus_style($color-theme-light);
+
+#error_label {
+    color: $color-light-red;
+}
+
+#confirm_button {
+    padding: $padding-button;
+    border-radius: $border-radius-button;
+    background-color: $color-light-blue;
+    &:hover {
+        background-color: $color-dark-blue;
+    }
+}
+
+/*
+splash_screen_view
+*/
+#SplashScreenWindow {
+    #loading_progress_bar {
+        @include loading-progress-bar-style($color-progress-bar-theme-1);
+        color: transparent;
+    }
+
+    #loading_progress_bar::chunk {
+        @include loading-progress-bar-style($color-progress-bar-theme-2);
+    }
+}
+
+/*
+main_view
+*/
+#MainWindow {
+    #header_frame {
+        border: none;
+        QFrame {
+            border: none;
+        }
+    }
+
+    #slide_menu_button {
+        background-color: $color-light-black;
+        border-radius: 2px;
+        &:hover {
+            background-color: $color-dark-black;
+        }
+    }
+
+    #main_content_frame {
+        background-color: $color-dark-black;
+        border-radius: $border-radius-frame * 2;
+    }
+
+    #slide_menu_content_frame QPushButton {
+        text-align: left;
+        background-color: $color-light-black;
+        border: none;
+        padding: 8px;
+    }
+}
+
+/*
+confirm_custom_dialog
+*/
+
+#ConfirmResetSettingsDialog {
+    @include push-button-style;
+    @include yes-no-button-style;
+}
+
+/*
+quit_dialog
+*/
+#QuitDialog, #NoConnectionDialog {
+    QFrame {
+        border: none;
+    }
+
+    #yes_no_button_container QPushButton {
+        border-radius: $border-radius-button + 7;
+        padding: $padding-button + 2;
+    }
+
+    @include yes-no-button-style;
+}
+
+/*
+library_view / library_notes_view
+*/
+
+QWidget {
+    #delete_book_button, #register_a_new_book_button, #update_book_button, #delete_note_button, #register_a_new_note_button, #update_note_button, #delete_note_button {
+        border-radius: $border-radius-button;
+        padding: $padding-button;
+    }
+    #delete_book_button, #delete_note_button {
+        background-color: $color-light-red;
+    }
+
+    #register_a_new_book_button, #register_a_new_note_button {
+        background-color: $color-light-green;
+    }
+
+    #update_book_button, #update_note_button {
+        background-color: $color-light-blue;
+    }
+
+    #delete_book_button:hover, #delete_note_button:hover {
+        background-color: $color-dark-red;
+    }
+
+    #register_a_new_book_button:hover, #register_a_new_note_button:hover {
+        background-color: $color-dark-green;
+    }
+
+    #update_book_button:hover, #update_note_button:hover {
+        background-color: $color-dark-blue;
+    }
+
+    #search_frame {
+        border-radius: $border-radius-frame;
+        background-color: #242424;
+        padding: 10px;
+    }
+
+    #search_book_line_edit, #search_note_line_edit {
+        border: none;
+        background-color: #242424;
+    }
+
+    #clear_button {
+        padding: 0;
+        border: none;
+    }
+}
+
+/*
+register_book_view.py
+*/
+#RegisterWindow {
+    #use_api_button, #import_book_button {
+        background-color: $color-light-blue;
+        border-radius: $border-radius-button;
+        padding: $padding-button - 2;
+        &:hover {
+            background-color: $color-dark-blue;
+        }
+    }
+}
+
+/*
+api_book_view
+*/
+#ApiBookWindow {
+    #register_book_in_library_button {
+        border-radius: $border-radius-button;
+        padding: $padding-button;
+        background-color: $color-light-green;
+    }
+
+    #register_book_in_library_button:hover {
+        background-color: $color-dark-green;
+    }
+
+    #run_search_button {
+        background-color: $color-light-blue;
+    }
+
+    #run_search_button:hover {
+        background-color: $color-dark-blue;
+    }
+}
+
+/*
+ConfirmUpdateBookDialog
+*/
+
+#ConfirmUpdateDialog {
+    QFrame {
+        border: none;
+    }
+
+    @include push-button-style;
+
+    #confirm_button {
+        background-color: $color-light-green;
+    }
+
+    #annul_button {
+        background-color: $color-light-red;
+    }
+
+    #old_book_frame, #new_book_frame {
+        border-radius: $border-radius-frame;
+    }
+
+    #old_book_frame {
+        background-color: $color-light-red-transparent;
+    }
+
+    #new_book_frame {
+        background-color: $color-light-green-transparent;
+    }
+}
+
+/*
+custom_message_dialog 
+*/
+CustomMessageDialog {
+    @include push-button-style;
+
+    #ok_button {
+        background-color: $color-light-blue;
+    }
+
+    #ok_button:hover {
+        background-color: $color-dark-blue;
+    }
+}
+
+/* ConvertNoteDialog */
+#ExportWindow {
+    QFrame {
+        border: none;
+    }
+
+    QFrame:hover {
+        background-color: $color-dark-black;
+        border-radius: $border-radius-frame;
+    }
+
+    @include quit-button-style;
+}
+
+/* register_book_view */
+#RegisterWindow {
+    QFrame {
+        border: none;
+    }
+}
+
+/* 
+setting_view
+*/
+
+QWidget {
+    #save_button, #restore_button {
+        border-radius: $border-radius-button;
+        padding: $padding-button;
+    }
+    #save_button {
+        background-color: $color-light-green;
+    }
+
+    #save_button:hover {
+        background-color: $color-dark-green;
+    }
+
+    #restore_button {
+        background-color: $color-light-blue;
+    }
+
+    #restore_button:hover {
+        background-color: $color-dark-blue;
+    }
+}
+
+/*
+ConfirmDeleteDialog
+*/
+#ConfirmDeleteDialog {
+    @include push-button-style;
+    @include yes-no-button-style;
+}
+
+/*
+ViewNoteWindow
+*/
+#ViewNoteWindow {
+    @include push-button-style;
+
+    #export_button {
+        background-color: $color-light-blue;
+        &:hover {
+            background-color: $color-dark-blue;
+        }
+    }
+
+    @include quit-button-style;
+}
+
+/*
+ConvertNoteDialog
+*/
+#ConvertNoteDialog {
+    @include quit-button-style;
+}
+
+/*UpdateNoteView*/
+
+#UpdateNoteWindow {
+    @include push-button-style;
+    @include quit-button-style;
+    #move_note_to_another_book_button {
+        background-color: $color-light-blue;
+        &:hover {
+            background-color: $color-dark-blue;
+        }
+    }
+}
+
+/*
+RegisterNoteView 
+*/
+
+#RegisterNoteWindow {
+    @include push-button-style;
+    @include quit-button-style;
+    #import_button {
+        background-color: $color-light-blue;
+        &:hover {
+            background-color: $color-dark-blue;
+        }
+    }
+
+    #register_button {
+        background-color: $color-light-green;
+        &:hover {
+            background-color: $color-dark-green;
+        }
+    }
+}
+
+/*
+updateBookView
+*/
+
+#UpdateBookWindow {
+    #save_update_button {
+        border-radius: $border-radius-button;
+        padding: $padding-button;
+        background-color: $color-light-green;
+        &:hover {
+            background-color: $color-dark-green;
+        }
+    }
+}
+
+/*
+BookView
+*/
+
+#ViewBookWindow {
+    @include quit-button-style;
+
+    #export_book_button {
+        padding: $padding-button;
+        border-radius: $border-radius-button;
+        background-color: $color-light-blue;
+        &:hover {
+            background-color: $color-dark-blue;
+        }
+    }
+}

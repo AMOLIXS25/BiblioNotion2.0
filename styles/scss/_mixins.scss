@@ -1,0 +1,61 @@
+@import "./variables";
+
+// Mixin qui permet d'appliquer le style pour le focus des line edit,...
+@mixin widget-focus-style($color) {
+    QLineEdit:focus {
+        border: 1px solid $color;
+        border-radius: 3px;
+    }
+    
+    QSpinBox:focus {
+        border: 1px solid $color;
+        border-radius: 3px;
+    }
+    
+    QPlainTextEdit:focus {
+        border: 1px solid $color;
+        border-radius: 3px;
+    }
+}
+
+@mixin loading-progress-bar-style($bg) {
+    background-color: $bg;
+    border-radius: $border-radius-progress-bar;
+}
+
+@mixin push-button-style {
+    QPushButton {
+        border-radius: $border-radius-button;
+        padding: $padding-button;
+    }
+}
+
+@mixin yes-no-button-style {
+    #yes_button {
+        background-color: $color-light-green;
+    }
+
+    #yes_button:hover {
+        background-color: $color-dark-green;
+    }
+    
+    #no_button {
+        background-color: $color-light-red;
+    }
+
+    #no_button:hover {
+        background-color: $color-dark-red;
+    }
+}
+
+@mixin quit-button-style {
+    #quit_button {
+        background-color: $color-light-red;
+        border-radius: $border-radius-button;
+        padding: $padding-button;
+    }
+
+    #quit_button:hover {
+        background-color: $color-dark-red;
+    }
+}

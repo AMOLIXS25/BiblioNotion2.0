@@ -1,0 +1,373 @@
+/*
+GLOBALS
+*/
+/*
+DEFAULT THEME
+*/
+/*
+GLOBALS
+*/
+/*
+DEFAULT THEME
+*/
+QLineEdit:focus {
+  border: 1px solid #c678dd;
+  border-radius: 3px; }
+
+QSpinBox:focus {
+  border: 1px solid #c678dd;
+  border-radius: 3px; }
+
+QPlainTextEdit:focus {
+  border: 1px solid #c678dd;
+  border-radius: 3px; }
+
+#error_label {
+  color: #DE5E5E; }
+
+#confirm_button {
+  padding: 6px;
+  border-radius: 3px;
+  background-color: #c678dd; }
+  #confirm_button:hover {
+    background-color: #a967bd; }
+
+/*
+splash_screen_view
+*/
+#SplashScreenWindow #loading_progress_bar {
+  background-color: rgba(198, 120, 221, 50%);
+  border-radius: 10px;
+  color: transparent; }
+
+#SplashScreenWindow #loading_progress_bar::chunk {
+  background-color: rgba(198, 120, 221, 60%);
+  border-radius: 10px; }
+
+/*
+main_view
+*/
+#MainWindow #header_frame {
+  border: none; }
+  #MainWindow #header_frame QFrame {
+    border: none; }
+
+#MainWindow #slide_menu_button {
+  background-color: #313131;
+  border-radius: 2px; }
+  #MainWindow #slide_menu_button:hover {
+    background-color: #292929; }
+
+#MainWindow #main_content_frame {
+  background-color: #292929;
+  border-radius: 10px; }
+
+#MainWindow #slide_menu_content_frame QPushButton {
+  text-align: left;
+  background-color: #313131;
+  border: none;
+  padding: 8px; }
+
+/*
+confirm_custom_dialog
+*/
+#ConfirmResetSettingsDialog QPushButton {
+  border-radius: 3px;
+  padding: 6px; }
+
+#ConfirmResetSettingsDialog #yes_button {
+  background-color: #72C39B; }
+
+#ConfirmResetSettingsDialog #yes_button:hover {
+  background-color: #5b9c7c; }
+
+#ConfirmResetSettingsDialog #no_button {
+  background-color: #DE5E5E; }
+
+#ConfirmResetSettingsDialog #no_button:hover {
+  background-color: #b34c4c; }
+
+/*
+quit_dialog
+*/
+#QuitDialog QFrame, #NoConnectionDialog QFrame {
+  border: none; }
+
+#QuitDialog #yes_no_button_container QPushButton, #NoConnectionDialog #yes_no_button_container QPushButton {
+  border-radius: 10px;
+  padding: 8px; }
+
+#QuitDialog #yes_button, #NoConnectionDialog #yes_button {
+  background-color: #72C39B; }
+
+#QuitDialog #yes_button:hover, #NoConnectionDialog #yes_button:hover {
+  background-color: #5b9c7c; }
+
+#QuitDialog #no_button, #NoConnectionDialog #no_button {
+  background-color: #DE5E5E; }
+
+#QuitDialog #no_button:hover, #NoConnectionDialog #no_button:hover {
+  background-color: #b34c4c; }
+
+/*
+library_view / library_notes_view
+*/
+QWidget #delete_book_button, QWidget #register_a_new_book_button, QWidget #update_book_button, QWidget #delete_note_button, QWidget #register_a_new_note_button, QWidget #update_note_button, QWidget #delete_note_button {
+  border-radius: 3px;
+  padding: 6px; }
+
+QWidget #delete_book_button, QWidget #delete_note_button {
+  background-color: #DE5E5E; }
+
+QWidget #register_a_new_book_button, QWidget #register_a_new_note_button {
+  background-color: #72C39B; }
+
+QWidget #update_book_button, QWidget #update_note_button {
+  background-color: #c678dd; }
+
+QWidget #delete_book_button:hover, QWidget #delete_note_button:hover {
+  background-color: #b34c4c; }
+
+QWidget #register_a_new_book_button:hover, QWidget #register_a_new_note_button:hover {
+  background-color: #5b9c7c; }
+
+QWidget #update_book_button:hover, QWidget #update_note_button:hover {
+  background-color: #a967bd; }
+
+QWidget #search_frame {
+  border-radius: 5px;
+  background-color: #242424;
+  padding: 10px; }
+
+QWidget #search_book_line_edit, QWidget #search_note_line_edit {
+  border: none;
+  background-color: #242424; }
+
+QWidget #clear_button {
+  padding: 0;
+  border: none; }
+
+/*
+register_book_view.py
+*/
+#RegisterWindow #use_api_button, #RegisterWindow #import_book_button {
+  background-color: #c678dd;
+  border-radius: 3px;
+  padding: 4px; }
+  #RegisterWindow #use_api_button:hover, #RegisterWindow #import_book_button:hover {
+    background-color: #a967bd; }
+
+/*
+api_book_view
+*/
+#ApiBookWindow #register_book_in_library_button {
+  border-radius: 3px;
+  padding: 6px;
+  background-color: #72C39B; }
+
+#ApiBookWindow #register_book_in_library_button:hover {
+  background-color: #5b9c7c; }
+
+#ApiBookWindow #run_search_button {
+  background-color: #c678dd; }
+
+#ApiBookWindow #run_search_button:hover {
+  background-color: #a967bd; }
+
+/*
+ConfirmUpdateBookDialog
+*/
+#ConfirmUpdateDialog QFrame {
+  border: none; }
+
+#ConfirmUpdateDialog QPushButton {
+  border-radius: 3px;
+  padding: 6px; }
+
+#ConfirmUpdateDialog #confirm_button {
+  background-color: #72C39B; }
+
+#ConfirmUpdateDialog #annul_button {
+  background-color: #DE5E5E; }
+
+#ConfirmUpdateDialog #old_book_frame, #ConfirmUpdateDialog #new_book_frame {
+  border-radius: 5px; }
+
+#ConfirmUpdateDialog #old_book_frame {
+  background-color: rgba(222, 94, 94, 30%); }
+
+#ConfirmUpdateDialog #new_book_frame {
+  background-color: rgba(114, 195, 129, 20%); }
+
+/*
+custom_message_dialog 
+*/
+CustomMessageDialog QPushButton {
+  border-radius: 3px;
+  padding: 6px; }
+
+CustomMessageDialog #ok_button {
+  background-color: #c678dd; }
+
+CustomMessageDialog #ok_button:hover {
+  background-color: #a967bd; }
+
+/* ConvertNoteDialog */
+#ExportWindow QFrame {
+  border: none; }
+
+#ExportWindow QFrame:hover {
+  background-color: #292929;
+  border-radius: 5px; }
+
+#ExportWindow #quit_button {
+  background-color: #DE5E5E;
+  border-radius: 3px;
+  padding: 6px; }
+
+#ExportWindow #quit_button:hover {
+  background-color: #b34c4c; }
+
+/* register_book_view */
+#RegisterWindow QFrame {
+  border: none; }
+
+/* 
+setting_view
+*/
+QWidget #save_button, QWidget #restore_button {
+  border-radius: 3px;
+  padding: 6px; }
+
+QWidget #save_button {
+  background-color: #72C39B; }
+
+QWidget #save_button:hover {
+  background-color: #5b9c7c; }
+
+QWidget #restore_button {
+  background-color: #c678dd; }
+
+QWidget #restore_button:hover {
+  background-color: #a967bd; }
+
+/*
+ConfirmDeleteDialog
+*/
+#ConfirmDeleteDialog QPushButton {
+  border-radius: 3px;
+  padding: 6px; }
+
+#ConfirmDeleteDialog #yes_button {
+  background-color: #72C39B; }
+
+#ConfirmDeleteDialog #yes_button:hover {
+  background-color: #5b9c7c; }
+
+#ConfirmDeleteDialog #no_button {
+  background-color: #DE5E5E; }
+
+#ConfirmDeleteDialog #no_button:hover {
+  background-color: #b34c4c; }
+
+/*
+ViewNoteWindow
+*/
+#ViewNoteWindow QPushButton {
+  border-radius: 3px;
+  padding: 6px; }
+
+#ViewNoteWindow #export_button {
+  background-color: #c678dd; }
+  #ViewNoteWindow #export_button:hover {
+    background-color: #a967bd; }
+
+#ViewNoteWindow #quit_button {
+  background-color: #DE5E5E;
+  border-radius: 3px;
+  padding: 6px; }
+
+#ViewNoteWindow #quit_button:hover {
+  background-color: #b34c4c; }
+
+/*
+ConvertNoteDialog
+*/
+#ConvertNoteDialog #quit_button {
+  background-color: #DE5E5E;
+  border-radius: 3px;
+  padding: 6px; }
+
+#ConvertNoteDialog #quit_button:hover {
+  background-color: #b34c4c; }
+
+/*UpdateNoteView*/
+#UpdateNoteWindow QPushButton {
+  border-radius: 3px;
+  padding: 6px; }
+
+#UpdateNoteWindow #quit_button {
+  background-color: #DE5E5E;
+  border-radius: 3px;
+  padding: 6px; }
+
+#UpdateNoteWindow #quit_button:hover {
+  background-color: #b34c4c; }
+
+#UpdateNoteWindow #move_note_to_another_book_button {
+  background-color: #c678dd; }
+  #UpdateNoteWindow #move_note_to_another_book_button:hover {
+    background-color: #a967bd; }
+
+/*
+RegisterNoteView 
+*/
+#RegisterNoteWindow QPushButton {
+  border-radius: 3px;
+  padding: 6px; }
+
+#RegisterNoteWindow #quit_button {
+  background-color: #DE5E5E;
+  border-radius: 3px;
+  padding: 6px; }
+
+#RegisterNoteWindow #quit_button:hover {
+  background-color: #b34c4c; }
+
+#RegisterNoteWindow #import_button {
+  background-color: #c678dd; }
+  #RegisterNoteWindow #import_button:hover {
+    background-color: #a967bd; }
+
+#RegisterNoteWindow #register_button {
+  background-color: #72C39B; }
+  #RegisterNoteWindow #register_button:hover {
+    background-color: #5b9c7c; }
+
+/*
+updateBookView
+*/
+#UpdateBookWindow #save_update_button {
+  border-radius: 3px;
+  padding: 6px;
+  background-color: #72C39B; }
+  #UpdateBookWindow #save_update_button:hover {
+    background-color: #5b9c7c; }
+
+/*
+BookView
+*/
+#ViewBookWindow #quit_button {
+  background-color: #DE5E5E;
+  border-radius: 3px;
+  padding: 6px; }
+
+#ViewBookWindow #quit_button:hover {
+  background-color: #b34c4c; }
+
+#ViewBookWindow #export_book_button {
+  padding: 6px;
+  border-radius: 3px;
+  background-color: #c678dd; }
+  #ViewBookWindow #export_book_button:hover {
+    background-color: #a967bd; }

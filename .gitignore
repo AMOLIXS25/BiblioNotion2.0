@@ -1,0 +1,11 @@
+books_cover/
+export/
+__pycache__/
+__pypackages__/
+.vscode/
+.idea/
+qt_xml_ui/
+res/
+.pdm.toml
+pdm.lock
+pyproject.toml

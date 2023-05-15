@@ -1,0 +1,55 @@
+{
+    "QCustomSlideMenu": [{
+        "name": "slide_menu",
+        "defaultSize": [{
+          "width": 200,
+          "height": "parent"
+        }],
+        "collapsedSize": [{
+          "width": 0,
+          "height": "parent"
+        }],
+        "expandedSize": [{
+          "width": 200,
+          "height": "parent"
+        }],
+        "toggleButton" : [{
+          "buttonName": "slide_menu_button",
+          "icons": [{
+            "whenMenuIsCollapsed": ":/images/images/align-justify.svg",
+            "whenMenuIsExpanded": ":/images/images/arrow-left.svg"
+          }]
+        }],
+        "menuTransitionAnimation": [{
+          "animationDuration": 600,
+          "animationEasingCurve": "OutBack"
+        }]
+      }],
+      "QStackedWidget": [{
+        "name": "main_pages_container",
+        "transitionAnimation": [
+          {
+            "fade": [{
+              "active": true,
+              "duration": 500,
+              "easingCurve": "OutBack"
+            }],
+            "slide": [{
+              "active": true,
+              "duration": 500,
+              "direction": "horizontal",
+              "easingCurve": "OutBack"
+            }]
+          }
+        ],
+        "navigation": [
+          {
+            "navigationButtons": [{
+              "library_button": "library_page",
+              "notes_button": "notes_page",
+              "settings_button": "settings_page"
+            }]
+          }
+        ]
+      }]
+}
