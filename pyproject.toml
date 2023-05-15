@@ -1,0 +1,31 @@
+[tool.pdm]
+[tool.pdm.dev-dependencies]
+tools = [
+    "black>=23.3.0",
+]
+
+[project]
+name = "BiblioNotion2.0"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "amolixs", email = "amolixs@gmail.com"},
+]
+dependencies = [
+    "pyside6>=6.4.3",
+    "qtsass>=0.4.0",
+    "qt-custom-widgets>=0.1.6",
+    "asyncslot>=0.3.1",
+    "ebooklib>=0.18",
+    "pyinstaller>=5.10.1",
+    "fpdf2>=2.7.4",
+    "pytest-qt>=4.2.0",
+    "pytest>=7.3.1",
+]
+requires-python = ">=3.10,<3.11"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-pep517>=1.0"]
+build-backend = "pdm.pep517.api"
