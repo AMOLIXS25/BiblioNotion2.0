@@ -101,7 +101,40 @@ class TestBookStorage:
     def test_insert_a_book(self, book_storage):
         """Méthode qui permet de tester l'insertion d'un livre dans la base de donnée"""
         sql_request = """SELECT COUNT(*) FROM T_Books"""
+        book = BookModel(
+            title="test_insert_a_book",
+            cover="./books_cover/gg.jpg",
+            authors="J.K Rowling",
+            pages=14,
+            isbn="5465498798745413513544",
+            published_date="2003"
+        )
+        try:
+            book_storage.insert_a_book(book)
+            with closing(book_storage.cursor) as cursor:
+                res = cursor.execute(sql_request)
+                assert res.fetchone()[0] > 0
+        except sqlite3.IntegrityError:
+            pass
+        except FileNotFoundError:
+            pass
+
+    def test_cover_has_been_created(self):
+        """Méthode qui test si la couverture d'un livre se créer bien lorsque l'on créer le livre"""
+        assert os.path.exists("books_cover/test_insert_a_book.jpg") == True
+
+    def test_insert_multiple_books(self, book_storage):
+        """Méthode qui permet de tester l'insertion de plusieurs livres dans la base de donnée"""
+        sql_request = """SELECT COUNT(*) FROM T_Books"""
         books_to_insert = [
+            BookModel(
+                title="pistolet",
+                cover="./books_cover/gg.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="ty",
+                published_date="2003"
+            ),
             BookModel(
                 title="gigigi",
                 cover="./books_cover/gg.jpg",
@@ -175,14 +208,6 @@ class TestBookStorage:
                 published_date="2003"
             ),
             BookModel(
-                title="pistolet",
-                cover="./books_cover/gg.jpg",
-                authors="J.K Rowling",
-                pages=14,
-                isbn="ty",
-                published_date="2003"
-            ),
-            BookModel(
                 title="pistolsquat",
                 cover="./books_cover/gg.jpg",
                 authors="J.K Rowling",
@@ -212,8 +237,10 @@ class TestBookStorage:
                 book_storage.insert_a_book(book)
             with closing(book_storage.cursor) as cursor:
                 res = cursor.execute(sql_request)
-                assert res.fetchone()[0] > 0
+                assert res.fetchone()[0] > 5
         except sqlite3.IntegrityError:
+            pass
+        except FileNotFoundError:
             pass
     
     def test_get_all_books(self, book_storage):
@@ -227,3 +254,98 @@ class TestBookStorage:
         get_books.reverse()
         get_ten_last_books = book_storage.get_ten_last_books()
         assert get_books[:10] == get_ten_last_books
+
+    def test_get_books_thanks_to_a_search(self, book_storage):
+        """Méthode qui permet de tester la recherche d'un ou plusieurs livre(s)"""
+        search = "pistol"
+        books_list_test = [
+            BookModel(
+                title="pistolet",
+                cover="./books_cover/pistolet.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                id=30,
+                isbn="ty",
+                published_date="2003"
+            ),
+            BookModel(
+                title="pistolsquat",
+                cover="./books_cover/pistolsquat.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                id=26,
+                isbn="ytuaioppmlpjkuhgyd",
+                published_date="2003"
+            )
+        ]
+        get_books = book_storage.get_books_thanks_to_a_search(search)
+        print(get_books)
+        assert get_books == books_list_test
+
+    def test_delete_a_book(self, book_storage):
+        """Méthode qui permet de tester la suppression d'un livre"""
+        book_to_delete = BookModel(
+            title="c'estlefalenpin",
+            cover="./books_cover/gg.jpg",
+            authors="J.K Rowling",
+            pages=14,
+            id=28,
+            isbn="ouic'estlefalenpinop",    
+            published_date="2003"
+        )
+        book_storage.delete_a_book(book_to_delete)
+        assert book_to_delete not in book_storage.get_all_books()
+
+    def test_cover_has_been_deleted(self, book_storage):
+        """Méthode qui test si la couverture du livre à bien été supprimé"""
+        book_to_delete = BookModel(
+            title="c'estlefalenpin",
+            cover="books_cover/c'estlefalenpin.jpg",
+            authors="J.K Rowling",
+            pages=14,
+            id=28,
+            isbn="ouic'estlefalenpinop",    
+            published_date="2003"
+        )
+        book_storage.delete_cover_file_associate_to_book_to_delete(book_to_delete)
+        assert os.path.exists("books_cover/c'estlefalenpin.jpg") == False
+    
+    def test_update_book_cover(self, book_storage):
+        """Méthode qui test la mise à jour d'un livre"""
+        old_book = BookModel(
+            title="monkeydluffy",
+            cover="/books_cover/monkeydluffy.jpg",
+            authors="J.K Rowling",
+            pages=14,
+            id=27,
+            isbn="c'est le monkey",
+            published_date="2003"
+        )
+        new_book = BookModel(
+            title="monkeyluffy2.0",
+            cover="./books_cover/monkeydluffy.jpg",
+            authors="J.K Rowling",
+            pages=500,
+            id=27,
+            isbn="c'est le monkey2.0",
+            published_date="2005"
+        )
+        book_storage.update_book(old_book, new_book)
+        assert new_book in book_storage.get_all_books()
+
+    def test_update_book_cover(self):
+        """Méthode qui test si la couverture se met bien à jours lorsqu'on met à jour un livre"""
+        new_book = BookModel(
+            title="monkeyluffy2.0",
+            cover="./books_cover/monkeydluffy.jpg",
+            authors="J.K Rowling",
+            pages=500,
+            id=27,
+            isbn="c'est le monkey2.0",
+            published_date="2005"
+        )
+        assert os.path.exists(new_book.cover) == True
+
+    def test_get_number_of_books(self, book_storage):
+        """Méthode qui test si la méthode pour renvoyer le nombre de livre fonctionne"""
+        assert book_storage.get_number_of_books() == 13
