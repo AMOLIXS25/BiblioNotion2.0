@@ -75,19 +75,18 @@ class BookStorage:
         sql_request: str = "INSERT INTO T_Books(b_title, b_cover, b_authors, b_status, b_types, b_pages, b_isbn, b_published_date, b_evaluation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
         new_book.cover = self.save_cover(new_book.title, new_book.cover)
         new_book = (new_book.title, new_book.cover, new_book.authors, new_book.status, new_book.types, new_book.pages, new_book.isbn, new_book.published_date, new_book.evaluation)
-        try:
-            with closing(self.cursor) as cursor:
-                self.cursor.execute(
-                        sql_request,
-                        new_book)
-                self.commit()
-        except sqlite3.IntegrityError:
-            print("[+] Erreur d'intégritée géré")
+        with closing(self.cursor) as cursor:
+            self.cursor.execute(
+                    sql_request,
+                    new_book)
+            self.commit()
 
     def save_cover(self, book_name: str, path_cover_to_save):
         setting_storage = SettingStorage()
         picture_name_to_save = book_name.replace(" ", "_") + ".jpg"
         books_cover_folder: str = setting_storage.get_books_folder_cover_path("default")
+        if not os.path.exists(books_cover_folder):
+            os.mkdir(books_cover_folder)
         new_save_path_cover: str = f"{books_cover_folder}{picture_name_to_save}"
         if path_cover_to_save == "":
             return ""
@@ -187,8 +186,11 @@ class BookStorage:
 
     def delete_cover_file_associate_to_book_to_delete(self, book_to_delete: BookModel):
         """Méthode qui permet de supprimer la couverture associé au livre que l'on souhaite supprimer"""
-        if book_to_delete.cover != "":
-            os.remove(book_to_delete.cover)
+        try:
+            if book_to_delete.cover != "":
+                os.remove(book_to_delete.cover)
+        except FileNotFoundError:
+            pass
 
     def update_book(self, old_book: BookModel, new_book: BookModel):
         """Permet de mettre un livre à jour"""
