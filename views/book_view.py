@@ -1,3 +1,4 @@
+import os
 from PySide6.QtWidgets import QWidget, QFileDialog
 from PySide6.QtGui import QPixmap, QImage
 from PySide6 import QtCore
@@ -85,6 +86,8 @@ class BookView(QWidget, Ui_ViewBookWindow):
                     custom_message_dialog.exec()
                 except PermissionError:
                     directory = self.setting_storage.get_export_pdf_note_path("default")
+                    if os.path.exists(directory) == False:
+                        os.mkdir(directory)
                     confirm_auto_save_file_dialog = ConfirmAutoSaveFileDialog(f"Souhaitez exportée vos notes automatiquement dans le dossier : {directory} ?")
                     confirm_auto_save_file_dialog.exec()
                     if confirm_auto_save_file_dialog.is_yes:
@@ -106,6 +109,8 @@ class BookView(QWidget, Ui_ViewBookWindow):
                     custom_message_dialog.exec()
                 except PermissionError:
                     directory = self.setting_storage.get_export_txt_note_path("default")
+                    if os.path.exists(directory) == False:
+                        os.mkdir(directory)
                     confirm_auto_save_file_dialog = ConfirmAutoSaveFileDialog(f"Souhaitez exportée vos notes automatiquement dans le dossier : {directory} ?")
                     confirm_auto_save_file_dialog.exec()
                     if confirm_auto_save_file_dialog.is_yes:  

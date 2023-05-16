@@ -1,3 +1,4 @@
+import os
 from PySide6.QtWidgets import QWidget, QFileDialog
 from custom_dialogs.confirm_auto_save_file_dialog import ConfirmAutoSaveFileDialog
 from custom_dialogs.export_dialog import ExportDialog
@@ -46,6 +47,8 @@ class NoteView(QWidget, Ui_ViewNoteWindow):
                 custom_message_dialog.exec()
             except PermissionError:
                 directory = self.setting_storage.get_export_pdf_note_path("default")
+                if os.path.exists(directory) == False:
+                    os.mkdir(directory)
                 confirm_auto_save_file_dialog = ConfirmAutoSaveFileDialog(f"Souhaitez exportée votre note automatiquement dans le dossier : {directory} ?")
                 confirm_auto_save_file_dialog.exec()
                 if confirm_auto_save_file_dialog.is_yes:
@@ -65,6 +68,8 @@ class NoteView(QWidget, Ui_ViewNoteWindow):
                 custom_message_dialog.exec()
             except PermissionError:
                 directory = self.setting_storage.get_export_txt_note_path("default")
+                if os.path.exists(directory) == False:
+                    os.mkdir(directory)
                 confirm_auto_save_file_dialog = ConfirmAutoSaveFileDialog(f"Souhaitez exportée votre note automatiquement dans le dossier : {directory} ?")
                 confirm_auto_save_file_dialog.exec()
                 if confirm_auto_save_file_dialog.is_yes:  
