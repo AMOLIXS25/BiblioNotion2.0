@@ -81,7 +81,7 @@ class TestBookStorage:
 
     @pytest.fixture
     def book_storage(self):
-        book_storage = BookStorage("test.db")
+        book_storage: BookStorage = BookStorage("test.db")
         yield book_storage
 
     def test_if_connection_to_the_database_is_etablished(self, book_storage):
@@ -131,7 +131,7 @@ class TestBookStorage:
                 cover="./books_cover/gg.jpg",
                 authors="J.K Rowling",
                 pages=14,
-                isbn="dqzdqdqdqdqdz",
+                isbn="jneconnaisdpas",
                 published_date="2003"
             ),
             BookModel(
@@ -139,7 +139,7 @@ class TestBookStorage:
                 cover="./books_cover/gg.jpg",
                 authors="J.K Rowling",
                 pages=14,
-                isbn="dzqddqdqdqddqd",
+                isbn="ouijedisoui",
                 published_date="2003"
             ),
             BookModel(
@@ -147,7 +147,7 @@ class TestBookStorage:
                 cover="./books_cover/gg.jpg",
                 authors="J.K Rowling",
                 pages=14,
-                isbn="fffffffffffffffff",
+                isbn="rololalala",
                 published_date="2003"
             ),
             BookModel(
@@ -176,12 +176,36 @@ class TestBookStorage:
             ),
             BookModel(
                 title="pistolet",
-                cover="./books_cover/Gigi2.jpg",
+                cover="./books_cover/gg.jpg",
                 authors="J.K Rowling",
                 pages=14,
                 isbn="ty",
                 published_date="2003"
-            )
+            ),
+            BookModel(
+                title="pistolsquat",
+                cover="./books_cover/gg.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="ytuaioppmlpjkuhgyd",
+                published_date="2003"
+            ),
+            BookModel(
+                title="monkeydluffy",
+                cover="./books_cover/gg.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="c'est le monkey",
+                published_date="2003"
+            ),
+            BookModel(
+                title="c'estlefalenpin",
+                cover="./books_cover/gg.jpg",
+                authors="J.K Rowling",
+                pages=14,
+                isbn="ouic'estlefalenpinop",
+                published_date="2003"
+            ),
         ]
         try:
             for book in books_to_insert:
@@ -197,3 +221,9 @@ class TestBookStorage:
         get_books = book_storage.get_all_books()
         assert len(get_books) > 2
         
+    def test_get_ten_last_books(self, book_storage):
+        """Méthode qui test la méthode pour récupérer seulement les derniers livres"""
+        get_books = book_storage.get_all_books()
+        get_books.reverse()
+        get_ten_last_books = book_storage.get_ten_last_books()
+        assert get_books[:10] == get_ten_last_books
