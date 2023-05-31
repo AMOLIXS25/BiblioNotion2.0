@@ -247,7 +247,7 @@ class BookStorage:
             return result_of_the_request.fetchone()[0]
 
 
-class BookApi():
+class BookApi:
     """Classe qui permet de gérer le côté backend api des livres"""
     def __init__(self):
         """BookApi constructeur"""

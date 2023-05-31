@@ -17,8 +17,8 @@ class Setting:
 
 class SettingStorage:
     """Classe qui permet de gérer le modèle Setting"""
-    def __init__(self) -> None:
-        self.database: sqlite3.Connection = sqlite3.connect("data.db")
+    def __init__(self, database_name = "data.db") -> None:
+        self.database: sqlite3.Connection = sqlite3.connect(database_name)
         self.create_table()
         if self.get_number_of_settings() == 0:
             setting = Setting("default")

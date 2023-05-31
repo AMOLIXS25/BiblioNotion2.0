@@ -46,7 +46,7 @@ class RegisterNoteView(QMainWindow, Ui_RegisterNoteWindow):
             error_message += "Veuillez rentrée le titre de la note. \n"
             fields_validate = False
             self.appliquate_error_style(self.title_line_edit)
-        elif len(self.title_line_edit.text()) > 100:
+        elif len(self.title_line_edit.text()) > 25:
             error_message += "Titre de la note trop long. \n"
             fields_validate = False
             self.appliquate_error_style(self.title_line_edit)

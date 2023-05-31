@@ -2,7 +2,7 @@ from contextlib import closing
 import sqlite3
 import pytest
 
-from models.book import BookModel, BookStorage
+from models.book import BookApi, BookModel, BookStorage
 
 from os.path import exists
 import os
@@ -349,3 +349,28 @@ class TestBookStorage:
     def test_get_number_of_books(self, book_storage):
         """Méthode qui test si la méthode pour renvoyer le nombre de livre fonctionne"""
         assert book_storage.get_number_of_books() == 13
+
+
+class TestBookApi:
+    """Classe qui permet de tester la classe BookApi"""
+    @pytest.fixture
+    def book_api(self):
+        book_api = BookApi()
+        yield book_api
+
+    def test_book_api_constructor(self, book_api):
+        """Méthode qui test le constructeur de book_api"""
+        assert book_api.books_get_with_api == []
+
+    def test_connexion_to_api(self, book_api):
+        """Méthode qui permet de tester la connexion à l'api"""
+        assert BookApi.test_connexion_to_api() == True
+
+    def test_get_json_data_from_url(self, book_api):
+        """Méthode qui permet de tester la bonne récupération des données json de l'api"""
+        assert book_api.get_json_data_from_url("harry") != None
+
+    def test_constructs_list_books(self, book_api):
+        """Méthode qui permet de tester la bonne construction de la liste de livres récupérer grâce à l'api"""
+        book_api.construct_list_books(book_api.get_json_data_from_url("harry"))
+        assert book_api.books_get_with_api != []

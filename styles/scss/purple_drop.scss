@@ -7,7 +7,6 @@ $color-progress-bar-theme-1: rgba(198, 120, 221, 50%);
 $color-progress-bar-theme-2: rgba(198, 120, 221, 60%);
 $color-light-blue: $color-theme-light;
 $color-dark-blue: $color-theme-dark;
-
 @include widget_focus_style($color-theme-light);
 
 #error_label {
